@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_record
+- has_many :purchase_records
 
 
 ## items テーブル
@@ -29,7 +29,7 @@
 | condition_id      | integer | null: false |
 | delivery_charge_burden_id | integer | null: false |
 | prefecture_id     | integer | null: false |
-| number_of_days_id | integer | null: false |
+| number_of_day_id  | integer | null: false |
 | price             | integer | null: false |
 | user              | references | null: false, foreign_key: true |
 
@@ -50,15 +50,11 @@
 | street_address  | string   | null: false |
 | building        | string   |
 | phone_number    | string   | null: false |
-| purchase_record_id | references | null: false, foreign_key: true |
-| user_id            | references | null: false, foreign_key: true |
-| item_id            | references | null: false, foreign_key: true |
+| purchase_record | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :purchase_record
-- belongs_to :user, through: :purchase_record
-- belongs_to :item, through: :purchase_record
 
 
 ## purchase_record テーブル
