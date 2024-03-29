@@ -17,7 +17,6 @@
 
 - has_many :items
 - has_many :purchase_record
-- has_many :buyers, through: :purchase_record
 
 
 ## items テーブル
@@ -29,7 +28,7 @@
 | category_id       | integer | null: false |
 | condition_id      | integer | null: false |
 | delivery_charge_burden_id | integer | null: false |
-| shipping_source_place_id  | integer | null: false |
+| prefecture_id     | integer | null: false |
 | number_of_days_id | integer | null: false |
 | price             | integer | null: false |
 | user              | references | null: false, foreign_key: true |
@@ -38,7 +37,6 @@
 
 - belongs_to :user
 - has_one :purchase_record
-- has_one :buyer, through: :purchase_record
 - has_one_attached :image
 
 
@@ -47,15 +45,18 @@
 | Column          | Type     | Options     |
 | --------------- | -------- | ----------- |
 | post_code       | string   | null: false |
-| prefecture      | string   | null: false |
+| prefecture_id   | integer  | null: false |
 | city            | string   | null: false |
 | street_address  | string   | null: false |
-| building        | string   | null: false |
-| phone_number    | integer  | null: false |
+| building        | string   |
+| phone_number    | string   | null: false |
+| purchase_record_id | references | null: false, foreign_key: true |
+| user_id            | references | null: false, foreign_key: true |
+| item_id            | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :purchase_record
+- belongs_to :purchase_record
 - belongs_to :user, through: :purchase_record
 - belongs_to :item, through: :purchase_record
 
@@ -66,10 +67,9 @@
 | ---------- | ---------- | ----------- |
 | user       | references | null: false, foreign_key: true |
 | item       | references | null: false, foreign_key: true |
-| buyer      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :buyer
+- has_one :buyer
