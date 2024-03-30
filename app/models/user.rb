@@ -7,9 +7,11 @@ class User < ApplicationRecord
   has_many :items
   has_many :purchase_records
 
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'must include both letters and numbers.'
   validates :nickname, presence: true
-  validates :last_name, :first_name, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "is not a valid email address" }
-  validates :last_name_kana, :first_name_kana, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "is not a valid email address" }
+  validates :last_name, :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "must consist of full-width characters only." }
+  validates :last_name_kana, :first_name_kana, presence: true, format: { with: /\A[ァ-ヴ]+\z/, message: "must consist of full-width Katakana characters only." }
   validates :birthday, presence: true
   
   
