@@ -2,7 +2,7 @@ FactoryBot.define do
   Faker::Config.locale = :ja
   factory :item do
     item_name { Faker::Team.creature }
-    introduction { Faker::Lorem.sentence }
+    introduction { Faker::Lorem.sentence(word_count: 10) }
     category_id { Faker::Number.between(from: 2, to: 11) }
     condition_id { Faker::Number.between(from: 2, to: 7) }
     delivery_charge_burden_id { Faker::Number.between(from: 2, to: 3) }
