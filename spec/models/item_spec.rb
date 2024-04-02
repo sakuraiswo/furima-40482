@@ -61,42 +61,38 @@ RSpec.describe Item, type: :model do
       it 'userと紐付いていないと登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it 'item_nameが41字以上では登録できない' do
         @item.item_name = Faker::Lorem.characters(number: 41)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item name is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Item name is too long (maximum is 40 characters)')
       end
       it 'item_nameが41字以上では登録できない' do
         @item.introduction = Faker::Lorem.characters(number: 1001)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Introduction is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Introduction is too long (maximum is 1000 characters)')
       end
       it 'priceが300未満では登録できない' do
         @item.price = Faker::Number.between(from: 0, to: 299)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be between ¥300 and ¥9,999,999 and consist of digits only")
+        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999 and consist of digits only')
       end
       it 'priceが10000000以上では登録できない' do
-        @item.price = Faker::Number.between(from: 10000000, to: 99999999)
+        @item.price = Faker::Number.between(from: 10_000_000, to: 99_999_999)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be between ¥300 and ¥9,999,999 and consist of digits only")
+        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999 and consist of digits only')
       end
       it 'priceが全角数字では登録できない' do
         @item.price = '１００００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be between ¥300 and ¥9,999,999 and consist of digits only")
+        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999 and consist of digits only')
       end
       it 'priceが半角でも英字では登録できない' do
         @item.price = '3thousand'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be between ¥300 and ¥9,999,999 and consist of digits only")
+        expect(@item.errors.full_messages).to include('Price must be between ¥300 and ¥9,999,999 and consist of digits only')
       end
-
     end
   end
-
-
-
 end
