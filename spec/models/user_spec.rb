@@ -97,13 +97,13 @@ RSpec.describe User, type: :model do
         @user.password = 'Ａaａ１1１'
         @user.password_confirmation = 'Ａaａ１1１'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password must include both letters and numbers and be in half-width characters.")
+        expect(@user.errors.full_messages).to include('Password must include both letters and numbers and be in half-width characters.')
       end
       it 'passwordが半角でもカタカナでは登録できない' do
         @user.password = 'ｱｱｱｱｱｱ'
         @user.password_confirmation = 'ｱｱｱｱｱｱ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password must include both letters and numbers and be in half-width characters.")
+        expect(@user.errors.full_messages).to include('Password must include both letters and numbers and be in half-width characters.')
       end
       it 'last_nameが半角では登録できない' do
         @user.last_name = 'ﾐｮｳジ'
