@@ -3,8 +3,8 @@ function calculation_fee (){
   itemPrice.addEventListener("input", () => {
     const addTaxPrice = document.getElementById("add-tax-price");
     const Profit = document.getElementById("profit");
-    addTaxPrice.innerHTML = Math.floor(itemPrice.value/10);
-    Profit.innerHTML = Math.floor(itemPrice.value/10*9);
+    addTaxPrice.innerHTML = Math.floor(itemPrice.value/10).toLocaleString();
+    Profit.innerHTML = Math.floor(itemPrice.value/10*9).toLocaleString();
   });
 
 };
