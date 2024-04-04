@@ -40,7 +40,7 @@
 - has_one_attached :image
 
 
-## buyers テーブル
+## address テーブル
 
 | Column          | Type     | Options     |
 | --------------- | -------- | ----------- |
@@ -68,4 +68,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :buyer
+- has_one :address
