@@ -2,10 +2,16 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :set_purchase, only: [:index, :create]
+
 
   def index
+    if @purchases.exists?(item_id: @item.id)
+      redirect_to root_path
+    else
     gon_public_key
     @purchase_address = PurchaseAddress.new
+    end
   end
 
   def create
@@ -29,6 +35,10 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def set_purchase
+    @purchases = Purchase.all
   end
 
   def pay_item
