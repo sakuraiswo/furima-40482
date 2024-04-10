@@ -6,6 +6,9 @@ class OrdersController < ApplicationController
 
 
   def index
+    if user_signed_in? && current_user.id == @item.user_id
+    redirect_to controller: :items, action: :index
+    end
     if @purchases.exists?(item_id: @item.id)
       redirect_to root_path
     else
