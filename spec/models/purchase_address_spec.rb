@@ -107,6 +107,4 @@ RSpec.describe PurchaseAddress, type: :model do
       end
     end
   end
-
-  # 実行コマンド  bundle exec rspec spec/models/purchase_address_spec.rb
 end

@@ -8,7 +8,5 @@ FactoryBot.define do
     building { Faker::Company.name }
     phone_number { Faker::Number.leading_zero_number(digits: rand(10..11)) }
     token { 'tok_abcdefghijk00000000000000000' }
-    association :user
-    association :item
   end
 end

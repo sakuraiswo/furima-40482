@@ -22,15 +22,16 @@
         <%= DeliveryChargeBurden.find(@item.delivery_charge_burden_id).name %>
       </span>
     </div>
-    <% if @purchases.exists?(item_id: @item.id) %>
-    <% else %>
-    <% if user_signed_in? && current_user.id == @item.user_id %>
-    <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", item_path(@item.id), data: {turbo_method: :delete}, class:"item-destroy" %>
-    <% elsif user_signed_in?%>
-    <%= link_to "購入画面に進む", item_orders_path(@item.id) , data: { turbo:false}, class:"item-red-btn"%>
-    <% end %>
+    <% unless @purchases.exists?(item_id: @item.id) %>
+      <% if user_signed_in?%>
+        <% if current_user.id == @item.user_id %>
+          <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除", item_path(@item.id), data: {turbo_method: :delete}, class:"item-destroy" %>
+        <% else %>
+          <%= link_to "購入画面に進む", item_orders_path(@item.id) , data: { turbo:false}, class:"item-red-btn"%>
+        <% end %>
+      <% end %>
     <% end %>
     <div class="item-explain-box">
       <span><%= @item.introduction %></span>

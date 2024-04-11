@@ -4,8 +4,7 @@ class OrdersController < ApplicationController
   before_action :set_purchase, only: [:index, :create]
 
   def index
-    redirect_to controller: :items, action: :index if user_signed_in? && current_user.id == @item.user_id
-    if @purchases.exists?(item_id: @item.id)
+    if current_user.id == @item.user_id || @purchases.exists?(item_id: @item.id)
       redirect_to root_path
     else
       gon_public_key

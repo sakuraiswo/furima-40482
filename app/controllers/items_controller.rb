@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
     if @purchases.exists?(item_id: @item.id)
       redirect_to root_path
     else
-      return if user_signed_in? && current_user.id == @item.user_id
+      return if current_user.id == @item.user_id
 
       redirect_to action: :index
     end
