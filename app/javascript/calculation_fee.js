@@ -4,7 +4,8 @@ function calculation_fee (){
     const addTaxPrice = document.getElementById("add-tax-price");
     const Profit = document.getElementById("profit");
     addTaxPrice.innerHTML = Math.floor(itemPrice.value/10).toLocaleString();
-    Profit.innerHTML = Math.floor(itemPrice.value/10*9).toLocaleString();
+    Profit.innerHTML = (itemPrice.value - Math.floor(itemPrice.value/10)).toLocaleString();
+
   });
 
 };
