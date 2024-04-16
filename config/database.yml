@@ -21,7 +21,7 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
+  adapter: mysql2
   url: <%= ENV['DATABASE_URL'] %>
 
 
